@@ -2,30 +2,27 @@
 Created on Jan 20, 2016
 
 @author: padne_000
+@note: This is an exercise: 3.3 and 4.7
 '''
 
-score = None
-
+def computegrade(score):
+    if score > 1.0 or score < 0:
+        return "Bad score"
+    elif score >= 0.9:
+        return "A"
+    elif score >= 0.8:
+        return "B"
+    elif score >= 0.7:
+        return "C"
+    elif score >= 0.6:
+        return "D"
+    else:
+        return "F"
+        
 try:
     score = float(input("Enter score: "))
 except:
     print("Only numbers are accepted")
+    quit()
 
-if score != None:
-    if score > 1.0 or score < 0:
-        print("Bad score")
-    elif score >= 0.9:
-        print("A")
-    elif score >= 0.8:
-        print("B")
-    elif score >= 0.7:
-        print("C")
-    elif score >= 0.6:
-        print ("D")
-    else:
-        print("F")
-
-
-
-
-    
+print(computegrade(score))
