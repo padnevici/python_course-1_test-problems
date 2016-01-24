@@ -11,17 +11,19 @@ average = 0
 enteredNumber = 0
 
 while True:
+
+    userInput = input("Enter a number: ")
+    if userInput.lower() == 'done':
+        break
     try:
-        userInput = input("Enter a number: ")
-        if userInput.lower() == 'done':
-            break
-        
         enteredNumber = float(userInput)
-        total = total + enteredNumber
-        count = count + 1
-        average = total / count
     except:
         print("Only number are accepted or 'done' for finish.")
+        continue
+    
+    total = total + enteredNumber
+    count = count + 1
+    average = total / count
 
 print("Total: ", total)
 print("Count: ", count)
