@@ -1,7 +1,7 @@
 '''
 Created on Jan 20, 2016
 
-@author: padne_000
+@author: Andrei Padnevici
 @note: This is an exercise: 3.1, 3.2 and 4.6
 '''
 
