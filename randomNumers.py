@@ -2,6 +2,7 @@
 Created on Jan 21, 2016
 
 @author: Andrei Padnevici
+@note: This is an exercise: 6.5
 '''
 import random
 
