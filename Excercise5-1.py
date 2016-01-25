@@ -25,6 +25,6 @@ while True:
     count = count + 1
     average = total / count
 
-print("Total: ", total)
-print("Count: ", count)
-print("Average: ", average)
+    print("Total: ", total)
+    print("Count: ", count)
+    print("Average: ", average)
