@@ -2,9 +2,8 @@
 Created on Jan 24, 2016
 
 @author: Andrei Padnevici
-@note: This is an exercise: 7.2
+@note: This is an exercise: 7.2 and 7.3
 '''
-from fileinput import filename
 from builtins import sum
 
 spam = set()
