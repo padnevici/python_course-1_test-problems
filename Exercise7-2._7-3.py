@@ -28,7 +28,9 @@ def printJoke():
         print("This is the last tip.")
 
 
-spam = set()
+spam = []
+total = 0
+count = 0
 
 fileName = input("Enter file name: ")
 try:
@@ -43,11 +45,15 @@ searchPattern = "X-DSPAM-Confidence:"
 for line in file:
     if line.strip().lower().startswith(searchPattern.lower()):
         try:
-            spam.add(float(line.strip().split(":")[1]))
+            value = float(line.strip().split(":")[1])
+            spam.append(value)
+            total = total + value
+            count = count + 1
         except:
             print("Cannot get float number for this line: '%s'" % line)
 
 if len(spam) > 0:
-    print("Average spam confidence: %g" % (sum(spam) / len(spam)))
+    print("Average spam confidence: %g/%d = %g" % (sum(spam), len(spam), sum(spam) / len(spam)))
+    print("Average spam confidence: %g/%d = %g" % (total, count, total / count))
 else:
     print("Average spam confidence: %g" % 0)
