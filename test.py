@@ -4,19 +4,17 @@ Created on Jan 20, 2016
 @author: Andrei Padnevici
 '''
 
-x = 2
-if x > 5 or x < 3:
-    print(x + 1)
-elif x == 4:
-    print(x)
-else:
-    print(x - 1)
+txt = 'but soft what light in yonder window breaks'
+words = txt.split()
+t = list()
+for word in words:
+    t.append((word, len(word)))
 
-x = 2
-if x > 5 or x < 3:
-    print(x + 1)
-elif x == 4:
-    print(x)
-else:
-    print(x - 1)
-    
+print(t)
+t.sort(reverse=False)
+print(t)
+
+res = list()
+for length, word in t:
+    res.append(length)
+print(res)
