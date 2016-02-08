@@ -22,7 +22,7 @@ if re.search("^http[s]*://", addressStr) is None:
         else:
             addressStr = "//" + addressStr
 
-if re.search("/$",addressStr) is None:
+if re.search("/$",addressStr) is None and re.search("\.[phtml]+$",addressStr) is None:
     addressStr+="/"
 
 address = urllib.parse.urlparse(addressStr, scheme="http")
@@ -44,20 +44,21 @@ getRequestStr = str('GET %s HTTP/1.0\n\n' % addressStr)
 print("Sending:", getRequestStr)
 try:
     mysock.send(getRequestStr.encode(encoding="iso-8859-1"))
+    #mysock.send("GET / HTTP/1.0\n\n".encode(encoding="iso-8859-1"))
 except:
     print("Unknown error is occurred on navigating")
     exit(-1)
 
 # read response
-responce = bytes()
+response = bytes()
 while True:
     try:
         data = mysock.recv(512)
         if (len(data) < 1):    break
-        responce += data
+        response += data
     except:
         print("Unknown error is occurred on data reading")
         exit(-1)
 
-print(responce.decode(encoding="ISO-8859-1"))
+print(response.decode(encoding="ISO-8859-1"))
 mysock.close()
