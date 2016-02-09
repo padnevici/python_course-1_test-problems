@@ -44,7 +44,6 @@ getRequestStr = str('GET %s HTTP/1.0\n\n' % addressStr)
 print("Sending:", getRequestStr)
 try:
     mysock.send(getRequestStr.encode(encoding="iso-8859-1"))
-    #mysock.send("GET / HTTP/1.0\n\n".encode(encoding="iso-8859-1"))
 except:
     print("Unknown error is occurred on navigating")
     exit(-1)
