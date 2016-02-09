@@ -2,7 +2,7 @@
 Created on Jan 24, 2016
 
 @author: Andrei Padnevici
-@note: This is an exercise: 12.1
+@note: This is an exercise: 12.5
 '''
 import re
 import socket
@@ -44,21 +44,24 @@ getRequestStr = str('GET %s HTTP/1.0\n\n' % addressStr)
 print("Sending:", getRequestStr)
 try:
     mysock.send(getRequestStr.encode(encoding="iso-8859-1"))
-    #mysock.send("GET / HTTP/1.0\n\n".encode(encoding="iso-8859-1"))
+    # mysock.send("GET / HTTP/1.0\n\n".encode(encoding="iso-8859-1"))
 except:
     print("Unknown error is occurred on navigating")
     exit(-1)
 
 # read response
-response = bytes()
+responseDataBytes = bytes()
 while True:
     try:
         data = mysock.recv(512)
+        responseDataBytes += data
         if (len(data) < 1):    break
-        response += data
     except:
         print("Unknown error is occurred on data reading")
         exit(-1)
 
-print(response.decode(encoding="ISO-8859-1"))
+responseDataStr = responseDataBytes.decode(encoding="ISO-8859-1")
+contestStartsAt = responseDataStr.find("\r\n\r\n")
+responseDataStr = responseDataStr[contestStartsAt:].strip()
+print(responseDataStr)
 mysock.close()

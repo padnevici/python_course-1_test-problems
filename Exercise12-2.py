@@ -23,8 +23,8 @@ if re.search("^http[s]*://", addressStr) is None:
         else:
             addressStr = "//" + addressStr
 
-if re.search("/$", addressStr) is None and re.search("\.[phtml]+$", addressStr) is None:
-    addressStr += "/"
+if re.search("/$",addressStr) is None and re.search("\\/[a-z]+\.[a-z]+$",addressStr) is None:
+    addressStr+="/"
 
 address = urllib.parse.urlparse(addressStr, scheme="http")
 addressStr = address.geturl()
