@@ -11,6 +11,7 @@ from bs4 import *
 
 import validators
 
+defaultUrlPattern = "http://pr4e.dr-chuck.com/tsugi/mod/python-data/data/"
 
 def prepareUrl(addressStr):
     # prepare url for urlparse
@@ -48,8 +49,6 @@ def navigateAndRead(addressStr):
         exit(-1)
     return htmlResponse.decode("ISO-8859-1")
 
-
-defaultUrlPattern = "http://pr4e.dr-chuck.com/tsugi/mod/python-data/data/"
 
 def getUrlFromAtagAtPosition(htmlDocument, position):
     soup = BeautifulSoup(htmlDocument, 'html.parser')
