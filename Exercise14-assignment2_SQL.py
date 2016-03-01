@@ -17,7 +17,10 @@ file = open("mbox.txt", "r")
 for line in file:
     if re.match("^From [\S]+@[\S]+", line):
         domain = re.search("@([\S]+)", line).group(1)
-        dbCount = conn.execute("SELECT count FROM Counts WHERE org='%s'" % domain).fetchone()
+        try:
+            dbCount = conn.execute("SELECT count FROM Counts WHERE org='%s'" % domain).fetchone()
+        except:
+            dbCount = None
         if dbCount is None:
             print(">>", domain, 1)
             conn.execute("INSERT INTO Counts (org, count) VALUES (?,?)", (domain, 1))
