@@ -1,0 +1,43 @@
+import itertools
+import re
+
+companies = '''Tata Communications
+Tata Communications Limited
+Tata Communications Ltd
+T-Com
+Telcel / AMX
+telecable
+telecom argentina - personal'''.lower()
+
+combinations = list()
+
+for company in companies.strip().split('\n'):
+    company = re.sub("([([]+)(.*)$","", company)
+    company = re.sub("([^\w\']+)"," ", company)
+    company = re.sub("([^\w]+)(lp|l p|p.c|pc|p.a|pa|n.a|the|llc|inc|ltd|b.v|limited|co|llp|corp|gmbh|l.p|l.l.p|l.l.c|corporation|company|incorporated)([^\w]+|$)"," ", company)
+    words = company.strip().split(' ')
+    if len(words) == 1 and combinations.__contains__((words,)) is False:
+        combinations.append((str(words[0]),))
+    else:
+        companyNameTuple = (words[0],)
+        words = words[1:]
+        listOfPermutationsTuples = list(itertools.permutations(words))
+        for p in listOfPermutationsTuples:
+            combination = companyNameTuple + p
+            if combinations.__contains__(combination) is False:
+                combinations.append(combination)
+
+searchString = str()
+for combination in combinations:
+    search = "OR C.name RLIKE '^"
+    if len(combination) == 1:
+        search += str(combination[0])
+    else:
+        for item in combination:
+            search += str(item) + "[[:>:]](.*)[[:<:]]"
+    if search.endswith('(.*)[[:<:]]'):
+        search = search[:len(search) - len('(.*)[[:<:]]')] + "'\n"
+    else:
+        search += "[[:>:]]'\n"
+    searchString += search
+print(searchString[3:])
